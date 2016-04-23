@@ -1,0 +1,5 @@
+extensions:
+    arachne.containeradapter: Arachne\ContainerAdapter\DI\ContainerAdapterExtension
+
+services:
+    empty: EmptyIterator
