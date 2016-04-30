@@ -17,7 +17,6 @@ use Nette\DI\CompilerExtension;
  */
 class ContainerAdapterExtension extends CompilerExtension
 {
-
     public function loadConfiguration()
     {
         $builder = $this->getContainerBuilder();

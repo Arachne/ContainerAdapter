@@ -23,7 +23,9 @@ use Symfony\Component\DependencyInjection\ScopeInterface;
  */
 class ContainerAdapter implements IntrospectableContainerInterface
 {
-    /** @var Container */
+    /**
+     * @var Container
+     */
     private $container;
 
     public function __construct(Container $container)

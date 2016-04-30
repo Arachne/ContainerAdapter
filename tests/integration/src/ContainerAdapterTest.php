@@ -21,7 +21,9 @@ class ContainerAdapterTest extends Test
 {
     use AssertException;
 
-    /** @var ContainerAdapter */
+    /**
+     * @var ContainerAdapter
+     */
     private $containerAdapter;
 
     protected function _before()
