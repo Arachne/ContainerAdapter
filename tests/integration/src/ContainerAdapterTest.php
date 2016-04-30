@@ -139,7 +139,7 @@ class ContainerAdapterTest extends Test
     {
         $config = new Configurator();
         $config->setTempDirectory(TEMP_DIR);
-        $config->addConfig(__DIR__ . '/../config/' . $file, false);
+        $config->addConfig(__DIR__ . '/../config/' . $file);
         return $config->createContainer();
     }
 }
