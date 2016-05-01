@@ -12,7 +12,7 @@ Wrapper for Nette DIC which implements ContainerInterface from Symfony.
 Installation
 ----
 
-The best way to install Arachne/ContainerAdapter is using  [Composer](http://getcomposer.org/):
+The best way to install Arachne/ContainerAdapter is using [Composer](http://getcomposer.org/).
 
 ```sh
 $ composer require arachne/container-adapter
