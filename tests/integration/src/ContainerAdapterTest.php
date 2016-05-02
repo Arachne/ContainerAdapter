@@ -5,21 +5,24 @@ namespace Tests\Integration;
 use Arachne\Bootstrap\Configurator;
 use Arachne\ContainerAdapter\ContainerAdapter;
 use Arachne\ContainerAdapter\Exception\NotSupportedException;
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Codeception\Util\Stub;
 use DateTime;
+use IntegrationSuiteGuy;
 use Nette\DI\Container;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\ScopeInterface;
-use VladaHejda\AssertException;
 
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
  */
-class ContainerAdapterTest extends Test
+class ContainerAdapterTest extends Unit
 {
-    use AssertException;
+    /**
+     * @var IntegrationSuiteGuy
+     */
+    protected $tester;
 
     /**
      * @var ContainerAdapter
@@ -35,13 +38,13 @@ class ContainerAdapterTest extends Test
     {
         $this->assertInstanceOf(Container::class, $this->containerAdapter->get('container'));
 
-        $this->assertException(function () {
+        $this->tester->expectException(ServiceNotFoundException::class, function () {
             $this->containerAdapter->get('nonexistent');
-        }, ServiceNotFoundException::class);
+        });
 
-        $this->assertException(function () {
+        $this->tester->expectException(ServiceNotFoundException::class, function () {
             $this->containerAdapter->get('nonexistent', ContainerAdapter::EXCEPTION_ON_INVALID_REFERENCE);
-        }, ServiceNotFoundException::class);
+        });
 
         $this->assertNull($this->containerAdapter->get('nonexistent', ContainerAdapter::NULL_ON_INVALID_REFERENCE));
     }
@@ -58,9 +61,9 @@ class ContainerAdapterTest extends Test
         $this->containerAdapter->set('date', $service2);
         $this->assertSame($service2, $this->containerAdapter->get('date'));
 
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->set('date', new DateTime(), 'scope');
-        }, NotSupportedException::class);
+        });
     }
 
     public function testHas()
@@ -81,9 +84,9 @@ class ContainerAdapterTest extends Test
     {
         $this->assertFalse($this->containerAdapter->getParameter('debugMode'));
 
-        $this->assertException(function () {
+        $this->tester->expectException(InvalidArgumentException::class, function () {
             $this->containerAdapter->getParameter('nonexistent');
-        }, InvalidArgumentException::class);
+        });
     }
 
     public function testHasParameter()
@@ -102,37 +105,37 @@ class ContainerAdapterTest extends Test
 
     public function testEnterScope()
     {
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->enterScope('scope');
-        }, NotSupportedException::class);
+        });
     }
 
     public function testLeaveScope()
     {
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->leaveScope('scope');
         }, NotSupportedException::class);
     }
 
     public function testAddScope()
     {
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->addScope(Stub::makeEmpty(ScopeInterface::class));
-        }, NotSupportedException::class);
+        });
     }
 
     public function testHasScope()
     {
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->hasScope('scope');
-        }, NotSupportedException::class);
+        });
     }
 
     public function testIsScopeActive()
     {
-        $this->assertException(function () {
+        $this->tester->expectException(NotSupportedException::class, function () {
             $this->containerAdapter->isScopeActive('scope');
-        }, NotSupportedException::class);
+        });
     }
 
     private function createContainer($file)
