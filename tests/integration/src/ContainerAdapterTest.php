@@ -4,15 +4,12 @@ namespace Tests\Integration;
 
 use Arachne\Bootstrap\Configurator;
 use Arachne\ContainerAdapter\ContainerAdapter;
-use Arachne\ContainerAdapter\Exception\NotSupportedException;
 use Codeception\Test\Unit;
-use Codeception\Util\Stub;
 use DateTime;
 use IntegrationSuiteGuy;
 use Nette\DI\Container;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use Symfony\Component\DependencyInjection\ScopeInterface;
 
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
@@ -60,10 +57,6 @@ class ContainerAdapterTest extends Unit
         $service2 = new DateTime();
         $this->containerAdapter->set('date', $service2);
         $this->assertSame($service2, $this->containerAdapter->get('date'));
-
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->set('date', new DateTime(), 'scope');
-        });
     }
 
     public function testHas()
@@ -101,41 +94,6 @@ class ContainerAdapterTest extends Unit
         $this->containerAdapter->setParameter('nonexistent', 'value');
         $this->assertTrue($this->containerAdapter->hasParameter('nonexistent'));
         $this->assertSame('value', $this->containerAdapter->getParameter('nonexistent'));
-    }
-
-    public function testEnterScope()
-    {
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->enterScope('scope');
-        });
-    }
-
-    public function testLeaveScope()
-    {
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->leaveScope('scope');
-        }, NotSupportedException::class);
-    }
-
-    public function testAddScope()
-    {
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->addScope(Stub::makeEmpty(ScopeInterface::class));
-        });
-    }
-
-    public function testHasScope()
-    {
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->hasScope('scope');
-        });
-    }
-
-    public function testIsScopeActive()
-    {
-        $this->tester->expectException(NotSupportedException::class, function () {
-            $this->containerAdapter->isScopeActive('scope');
-        });
     }
 
     private function createContainer($file)

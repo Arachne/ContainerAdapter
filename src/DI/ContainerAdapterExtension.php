@@ -10,6 +10,7 @@
 
 namespace Arachne\ContainerAdapter\DI;
 
+use Arachne\ContainerAdapter\ContainerAdapter;
 use Nette\DI\CompilerExtension;
 
 /**
@@ -22,6 +23,6 @@ class ContainerAdapterExtension extends CompilerExtension
         $builder = $this->getContainerBuilder();
 
         $builder->addDefinition($this->prefix('containerAdapter'))
-            ->setClass('Arachne\ContainerAdapter\ContainerAdapter');
+            ->setClass(ContainerAdapter::class);
     }
 }

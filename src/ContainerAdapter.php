@@ -15,13 +15,12 @@ use Nette\DI\Container;
 use Nette\DI\MissingServiceException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use Symfony\Component\DependencyInjection\IntrospectableContainerInterface;
-use Symfony\Component\DependencyInjection\ScopeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
  */
-class ContainerAdapter implements IntrospectableContainerInterface
+class ContainerAdapter implements ContainerInterface
 {
     /**
      * @var Container
@@ -36,11 +35,8 @@ class ContainerAdapter implements IntrospectableContainerInterface
     /**
      * {@inheritdoc}
      */
-    public function set($id, $service, $scope = self::SCOPE_CONTAINER)
+    public function set($id, $service)
     {
-        if (func_num_args() >= 3) {
-            throw new NotSupportedException();
-        }
         $this->container->removeService($id);
         $this->container->addService($id, $service);
     }
@@ -100,30 +96,5 @@ class ContainerAdapter implements IntrospectableContainerInterface
     public function setParameter($name, $value)
     {
         $this->container->parameters[$name] = $value;
-    }
-
-    public function enterScope($name)
-    {
-        throw new NotSupportedException();
-    }
-
-    public function leaveScope($name)
-    {
-        throw new NotSupportedException();
-    }
-
-    public function addScope(ScopeInterface $scope)
-    {
-        throw new NotSupportedException();
-    }
-
-    public function hasScope($name)
-    {
-        throw new NotSupportedException();
-    }
-
-    public function isScopeActive($name)
-    {
-        throw new NotSupportedException();
     }
 }
