@@ -10,7 +10,6 @@
 
 namespace Arachne\ContainerAdapter;
 
-use Arachne\ContainerAdapter\Exception\NotSupportedException;
 use Nette\DI\Container;
 use Nette\DI\MissingServiceException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
