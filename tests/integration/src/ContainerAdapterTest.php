@@ -6,7 +6,7 @@ use Arachne\Bootstrap\Configurator;
 use Arachne\ContainerAdapter\ContainerAdapter;
 use Codeception\Test\Unit;
 use DateTime;
-use IntegrationSuiteGuy;
+use IntegrationSuiteTester;
 use Nette\DI\Container;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 class ContainerAdapterTest extends Unit
 {
     /**
-     * @var IntegrationSuiteGuy
+     * @var IntegrationSuiteTester
      */
     protected $tester;
 
