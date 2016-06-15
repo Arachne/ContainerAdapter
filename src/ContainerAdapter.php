@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the Arachne
  *
  * Copyright (c) Jáchym Toušek (enumag@gmail.com)
@@ -12,9 +12,9 @@ namespace Arachne\ContainerAdapter;
 
 use Nette\DI\Container;
 use Nette\DI\MissingServiceException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
@@ -78,6 +78,7 @@ class ContainerAdapter implements ContainerInterface
         if (!$this->hasParameter($name)) {
             throw new InvalidArgumentException("Parameter $name does not exist.");
         }
+
         return $this->container->parameters[$name];
     }
 
