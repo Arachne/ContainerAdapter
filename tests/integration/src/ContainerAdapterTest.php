@@ -2,11 +2,9 @@
 
 namespace Tests\Integration;
 
-use Arachne\Bootstrap\Configurator;
 use Arachne\ContainerAdapter\ContainerAdapter;
 use Codeception\Test\Unit;
 use DateTime;
-use IntegrationSuiteTester;
 use Nette\DI\Container;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
@@ -17,18 +15,13 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 class ContainerAdapterTest extends Unit
 {
     /**
-     * @var IntegrationSuiteTester
-     */
-    protected $tester;
-
-    /**
      * @var ContainerAdapter
      */
     private $containerAdapter;
 
     protected function _before()
     {
-        $this->containerAdapter = $this->createContainer('config.neon')->getByType(ContainerAdapter::class);
+        $this->containerAdapter = $this->tester->grabService(ContainerAdapter::class);
     }
 
     public function testGet()
@@ -94,14 +87,5 @@ class ContainerAdapterTest extends Unit
         $this->containerAdapter->setParameter('nonexistent', 'value');
         $this->assertTrue($this->containerAdapter->hasParameter('nonexistent'));
         $this->assertSame('value', $this->containerAdapter->getParameter('nonexistent'));
-    }
-
-    private function createContainer($file)
-    {
-        $config = new Configurator();
-        $config->setTempDirectory(TEMP_DIR);
-        $config->addConfig(__DIR__.'/../config/'.$file);
-
-        return $config->createContainer();
     }
 }
