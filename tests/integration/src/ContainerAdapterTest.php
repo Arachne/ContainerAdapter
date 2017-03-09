@@ -2,6 +2,7 @@
 
 namespace Tests\Integration;
 
+use Arachne\Codeception\Module\NetteDIModule;
 use Arachne\ContainerAdapter\ContainerAdapter;
 use Codeception\Test\Unit;
 use DateTime;
@@ -14,6 +15,11 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  */
 class ContainerAdapterTest extends Unit
 {
+    /**
+     * @var NetteDIModule
+     */
+    protected $tester;
+
     /**
      * @var ContainerAdapter
      */
@@ -28,13 +34,17 @@ class ContainerAdapterTest extends Unit
     {
         $this->assertInstanceOf(Container::class, $this->containerAdapter->get('container'));
 
-        $this->tester->expectException(ServiceNotFoundException::class, function () {
+        try {
             $this->containerAdapter->get('nonexistent');
-        });
+            $this->fail();
+        } catch (ServiceNotFoundException $e) {
+        }
 
-        $this->tester->expectException(ServiceNotFoundException::class, function () {
+        try {
             $this->containerAdapter->get('nonexistent', ContainerAdapter::EXCEPTION_ON_INVALID_REFERENCE);
-        });
+            $this->fail();
+        } catch (ServiceNotFoundException $e) {
+        }
 
         $this->assertNull($this->containerAdapter->get('nonexistent', ContainerAdapter::NULL_ON_INVALID_REFERENCE));
     }
@@ -70,9 +80,11 @@ class ContainerAdapterTest extends Unit
     {
         $this->assertFalse($this->containerAdapter->getParameter('debugMode'));
 
-        $this->tester->expectException(InvalidArgumentException::class, function () {
+        try {
             $this->containerAdapter->getParameter('nonexistent');
-        });
+            $this->fail();
+        } catch (InvalidArgumentException $e) {
+        }
     }
 
     public function testHasParameter()
