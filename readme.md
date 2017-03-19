@@ -9,7 +9,7 @@ Arachne/ContainerAdapter
 [![Downloads this Month](https://img.shields.io/packagist/dm/arachne/container-adapter.svg?style=flat-square)](https://packagist.org/packages/arachne/container-adapter)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/Arachne/ContainerAdapter/blob/master/license.md)
 
-Wrapper for Nette DIC which implements ContainerInterface from Symfony.
+Wrapper for Nette DIC which implements ContainerInterface from PSR-11.
 
 Installation
 ----
