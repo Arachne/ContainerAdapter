@@ -17,5 +17,5 @@ Installation
 The best way to install Arachne/ContainerAdapter is using [Composer](http://getcomposer.org/).
 
 ```sh
-$ composer require arachne/container-adapter
+composer require arachne/container-adapter
 ```
