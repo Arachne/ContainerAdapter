@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": "^7.1.0",
-        "nette/di": "^2.3.0|^3.0.0",
+        "nette/di": "^2.4.10|^3.0.0@dev",
         "psr/container": "^1.0.0"
     },
     "require-dev": {

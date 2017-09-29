@@ -15,6 +15,6 @@ class ContainerAdapterExtension extends CompilerExtension
         $builder = $this->getContainerBuilder();
 
         $builder->addDefinition($this->prefix('containerAdapter'))
-            ->setClass(ContainerAdapter::class);
+            ->setType(ContainerAdapter::class);
     }
 }
