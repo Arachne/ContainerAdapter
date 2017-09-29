@@ -23,12 +23,12 @@ class ContainerAdapterTest extends Unit
      */
     private $containerAdapter;
 
-    protected function _before()
+    protected function _before(): void
     {
         $this->containerAdapter = $this->tester->grabService(ContainerAdapter::class);
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $this->assertInstanceOf(Container::class, $this->containerAdapter->get('container'));
 
@@ -39,7 +39,7 @@ class ContainerAdapterTest extends Unit
         }
     }
 
-    public function testHas()
+    public function testHas(): void
     {
         $this->assertTrue($this->containerAdapter->has('container'));
         $this->assertFalse($this->containerAdapter->has('nonexistent'));

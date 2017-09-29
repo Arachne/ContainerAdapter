@@ -40,7 +40,7 @@ class ContainerAdapter implements ContainerInterface
     /**
      * {@inheritdoc}
      */
-    public function has($id)
+    public function has($id): bool
     {
         return $this->container->hasService($id);
     }
