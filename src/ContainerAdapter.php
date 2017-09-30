@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Arachne\ContainerAdapter;
 
 use Arachne\ContainerAdapter\Exception\ContainerException;
