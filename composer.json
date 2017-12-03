@@ -13,17 +13,16 @@
     ],
     "require": {
         "php": "^7.1.0",
-        "nette/di": "^2.4.10|^3.0.0@dev",
+        "nette/di": "^2.4.10",
         "psr/container": "^1.0.0"
     },
     "require-dev": {
-        "arachne/codeception": "^0.7.3|^1.0.0",
+        "arachne/codeception": "^0.8.0",
         "codeception/codeception": "^2.3.2",
-        "friendsofphp/php-cs-fixer": "^2.7.0@dev",
-        "phpstan/phpstan": "^0.8.5",
-        "phpstan/phpstan-nette": "^0.8.3"
+        "friendsofphp/php-cs-fixer": "^2.8.0",
+        "phpstan/phpstan": "^0.9.1",
+        "phpstan/phpstan-nette": "^0.9.0"
     },
-    "minimum-stability": "alpha",
     "autoload": {
         "psr-4": {
             "Arachne\\ContainerAdapter\\": "src"
