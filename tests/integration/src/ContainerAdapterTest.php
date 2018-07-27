@@ -32,18 +32,18 @@ class ContainerAdapterTest extends Unit
 
     public function testGet(): void
     {
-        $this->assertInstanceOf(Container::class, $this->containerAdapter->get('container'));
+        self::assertInstanceOf(Container::class, $this->containerAdapter->get('container'));
 
         try {
             $this->containerAdapter->get('nonexistent');
-            $this->fail();
+            self::fail();
         } catch (ServiceNotFoundException $e) {
         }
     }
 
     public function testHas(): void
     {
-        $this->assertTrue($this->containerAdapter->has('container'));
-        $this->assertFalse($this->containerAdapter->has('nonexistent'));
+        self::assertTrue($this->containerAdapter->has('container'));
+        self::assertFalse($this->containerAdapter->has('nonexistent'));
     }
 }
