@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Integration;
 
-use Arachne\Codeception\Module\NetteDIModule;
 use Arachne\ContainerAdapter\ContainerAdapter;
 use Arachne\ContainerAdapter\Exception\ServiceNotFoundException;
 use Codeception\Test\Unit;
+use Contributte\Codeception\Module\NetteDIModule;
 use Nette\DI\Container;
 
 /**

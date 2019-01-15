@@ -5,7 +5,7 @@ class_name: IntegrationSuiteTester
 modules:
     enabled:
         - Asserts
-        - Arachne\Codeception\Module\NetteDIModule:
+        - Contributte\Codeception\Module\NetteDIModule:
             tempDir: ../_temp/integration
             removeDefaultExtensions: true
             configFiles:
