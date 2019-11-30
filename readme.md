@@ -1,3 +1,6 @@
+Deprecated. Use [contributte/psr11-container-interface](https://github.com/contributte/psr11-container-interface).
+====
+
 Arachne/ContainerAdapter
 ====
 
